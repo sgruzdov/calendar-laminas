@@ -1,0 +1,57 @@
+{
+    "name": "doctrine/doctrine-laminas-hydrator",
+    "description": "Doctrine hydrators for Laminas applications",
+    "license": "MIT",
+    "keywords": [
+        "doctrine",
+        "hydrator",
+        "zf",
+        "laminas"
+    ],
+    "support": {
+        "issues": "https://github.com/doctrine/doctrine-laminas-hydrator/issues",
+        "source": "https://github.com/doctrine/doctrine-laminas-hydrator",
+        "rss": "https://github.com/doctrine/doctrine-laminas-hydrator/releases.atom"
+    },
+    "require": {
+        "php": "^7.2 || ~8.0.0",
+        "ext-ctype": "*",
+        "doctrine/collections": "^1.6.5",
+        "doctrine/inflector": "^1.4.3 || ^2.0.3",
+        "doctrine/persistence": "^1.3.7 || ^2.0",
+        "laminas/laminas-hydrator": "^3.0.2 || ^4.0",
+        "laminas/laminas-stdlib": "^3.2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "laminas/laminas-coding-standard": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Doctrine\\Laminas\\Hydrator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DoctrineTest\\Laminas\\Hydrator\\": "test/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    }
+}

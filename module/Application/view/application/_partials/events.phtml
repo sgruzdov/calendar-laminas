@@ -1,0 +1,50 @@
+<?php
+$result = '';
+$dayWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+
+foreach ($dayWeek as $day) {
+    $eventsHtml = '';
+    $date = '';
+    $dayHtml = '';
+
+    foreach ($this->events as $event) {
+        $dayWeekNumber = $this->dateManager->getDateTime($event->getDate())->format('Y-m-d');
+        $dayWeekName = $this->dateManager->getWeek($this->dateManager->getDateTime($event->getDate())->format('w'));
+        $monthName = $this->dateManager->getMonth($this->dateManager->getDateTime($event->getDate())->format('n'));
+
+        if ($dayWeekName === $day) {
+            $html = '
+                                 <div class="calendar-table-event" data-event-id="' . $this->escapeHtml($event->getEventId()) . '">
+                                    <div class="calendar-table-event-name">' . $event->getDate()->format('H:i') . ' ' . $this->escapeHtml($event->getName()) . '</div>
+                                    <div class="calendar-table-event-text">' . $this->escapeHtml($event->getDescription()) . '</div>
+                                 </div>
+                            ';
+            $date = $monthName.' '. $event->getDate()->format('d') .', '. $event->getDate()->format('Y');
+            $eventsHtml .= $html;
+        }
+
+    }
+
+    $dayHtml = '
+                        <div>
+                            <div class="calendar-table-day">
+                                <div class="calendar-table-day-title">' . $day . '</div>
+                                <div class="calendar-table-day-date">' . $date . '</div>
+                            </div>
+                            <div class="calendar-table-events">
+                                ' . $eventsHtml . '
+                            </div>
+                        </div>
+                    ';
+
+
+    if (!strlen($eventsHtml) == 0) {
+        $result .= $dayHtml;
+    }
+}
+
+if(strlen($result) == 0) {
+    echo '<div class="calendar-table-list-text">Событий на этой неделе не найдено</div>';
+} else {
+    echo $result;
+}

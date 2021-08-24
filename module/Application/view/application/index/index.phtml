@@ -1,0 +1,54 @@
+<div class="calendar">
+    <div class="calendar-top-menu">
+        <div class="calendar-top-menu-buttons">
+            <button data-type="prev" data-date="<?= $dateManager->getPrevDate() ?>" type="button" class="btn btn-secondary calendar-top-menu-button">
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+            </button>
+            <button data-type="today" data-date="<?= $dateManager->getCurrentDate() ?>" type="button" class="btn btn-secondary calendar-top-menu-button p-2">Сегодня</button>
+        </div>
+        <div class="calendar-top-menu-title"><?= $dateManager->getGap() ?></div>
+        <div class="calendar-top-menu-buttons">
+            <button data-type="next" data-date="<?= $dateManager->getNextDate() ?>" type="button" class="btn btn-secondary calendar-top-menu-button">
+                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="calendar-table">
+        <div class="calendar-table-list">
+          <?= $this->partial('application/_partials/events.phtml', ['events' => $events, 'dateManager' => $dateManager]) ?>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade comment-modal" id="openModal" tabindex="-1" aria-labelledby="openModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">Описание события</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-content-title"></h3>
+                <div class="modal-content-text"></div>
+                <hr>
+                <div class="modal-content-date">Дата:</div>
+                <form class="modal-form mt-4" data-event-id="" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend class="mb-0">Форма записи</legend>
+                        <div class="mb-3">
+                            <label for="initials" class="col-form-label">ФИО:</label>
+                            <input type="text" class="form-control" id="initials" name="initials" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
