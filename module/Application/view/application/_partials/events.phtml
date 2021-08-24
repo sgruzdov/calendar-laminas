@@ -14,11 +14,11 @@ foreach ($dayWeek as $day) {
 
         if ($dayWeekName === $day) {
             $html = '
-                                 <div class="calendar-table-event" data-event-id="' . $this->escapeHtml($event->getEventId()) . '">
-                                    <div class="calendar-table-event-name">' . $event->getDate()->format('H:i') . ' ' . $this->escapeHtml($event->getName()) . '</div>
-                                    <div class="calendar-table-event-text">' . $this->escapeHtml($event->getDescription()) . '</div>
-                                 </div>
-                            ';
+                 <div class="calendar-table-event" data-event-id="' . $this->escapeHtml($event->getEventId()) . '">
+                    <div class="calendar-table-event-name">' . $event->getDate()->format('H:i') . ' ' . $this->escapeHtml($event->getName()) . '</div>
+                    <div class="calendar-table-event-text">' . $this->escapeHtml($event->getDescription()) . '</div>
+                 </div>
+            ';
             $date = $monthName.' '. $event->getDate()->format('d') .', '. $event->getDate()->format('Y');
             $eventsHtml .= $html;
         }
@@ -26,16 +26,16 @@ foreach ($dayWeek as $day) {
     }
 
     $dayHtml = '
-                        <div>
-                            <div class="calendar-table-day">
-                                <div class="calendar-table-day-title">' . $day . '</div>
-                                <div class="calendar-table-day-date">' . $date . '</div>
-                            </div>
-                            <div class="calendar-table-events">
-                                ' . $eventsHtml . '
-                            </div>
-                        </div>
-                    ';
+        <div>
+            <div class="calendar-table-day">
+                <div class="calendar-table-day-title">' . $day . '</div>
+                <div class="calendar-table-day-date">' . $date . '</div>
+            </div>
+            <div class="calendar-table-events">
+                ' . $eventsHtml . '
+            </div>
+        </div>
+    ';
 
 
     if (!strlen($eventsHtml) == 0) {
